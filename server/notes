@@ -1,0 +1,33 @@
+commands during dev:
+
+time curl --data '{"sendno": 524998753,"app_key":"e32c72bab0e4d8e225318f98","receiver_type":3,"receiver_value":"b0_aa_36_1c_dd_37","verification_code":"72aa193208805867d08c9a9ca94ceed0","msg_type":2,"msg_content":{"message":"{\"command\":true}"},"platform":"android"}' -X POST http://localhost:80/push
+
+
+
+ab -c 1 -n 1 -p postfile -T application/x-www-form-urlencoded http://localhost/push
+
+
+insert into applications (app_key,app_name,app_icon,app_version,app_cert_dev,app_cert_prod ,ent_id,app_secret) values ('app1','app1','/img/innofidei.png','1','/tmp/test','/tmp/test',1,'CHUANGYITUISONG007');
+insert into applications (app_key,app_name,app_icon,app_version,app_cert_dev,app_cert_prod ,ent_id,app_secret) values ('e32c72bab0e4d8e225318f98','e32c72bab0e4d8e225318f98','/img/innofidei.png','1','/tmp/test','/tmp/test',1,'CHUANGYITUISONG007');
+insert into sessions_details (device_token,app_key) values ('12345','app1');
+
+"{'appkey':'app1','device':'12345','action':'reg'}"
+"{'appkey':'app1','device':'12345','action':'reg'}*#*"
+'{"appkey":"app1","device":"12345","action":"reg"}*#*'
+'{"appkey":"app1","device":"12345","action":"unreg"}*#*'
+'{"appkey":"app1","device":"12347","action":"reg"}*#*'
+'{"appkey":"app1","device":"12347","action":"shit"}*#*'
+'{"appkey":"app1","device":"9999","action":"unreg"}*#*'
+'{"appkey":"app1","device":"1234789","action":"reg"}*#*'
+'{"module":"ANDROID","type": "1","message": "Exception from android","time":"2014-02-04 21:30:20"}*#*' 
+'{"appkey":"e32c72bab0e4d8e225318f98","device":"b0_aa_36_1c_dd_37","action":"reg"}*#*'
+sendno524998753*@*
+
+#######################################################################################
+deploy:
+1.pip install pyzmq==2.2 
+2.pip install gevent==1.0
+3.pip install gevent_zeromq==0.2.5
+3. 
+4. [mysqld] skip-name-resolve
+5.   

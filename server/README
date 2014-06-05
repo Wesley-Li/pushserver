@@ -1,0 +1,35 @@
+1. Steps for espush server setup:
+    1. Setup OS Centos 6.5 64bit
+    2. cd ./deploy
+    3. tar xzvf Python-2.7.6.tgz
+    4. cd Python-2.7.6
+    5. ./configure --with-pydebug
+    6. make & make install
+    7. cd ..
+    8. unzip zeromq-4.0.3.zip
+    9. cd zeromq-4.0.3
+    10. ./configure
+    11. make & make install
+    12. cd ..
+    13. unzip pyzmq-2.2.0.zip
+    14. cd pyzmq-2.2.0.zip
+    15. python setup.py install
+    16. cd ../..
+    17. service iptables stop
+
+2. Steps for mysql server setup
+    1. Setup OS Centos 6.5 64bit
+    2. Install MySQL 5.6.16(server and client)
+    3. cd ../database
+    4. mysql -uroot -p < database_scripts_v0.6.sql
+    5. mysql -uroot -p < pre.sql
+    6. Edit /usr/my.cnf, add lines below:
+       [mysqld]
+       skip-name-resolve
+    7. service iptables stop
+    8. service mysql restart
+
+3. To start ESPUSH server:
+    1. Edit settings.py to set db_url, PSG_ip, and ADPNS_ip 
+    2. python app.py &
+    3. python deviceserver.py &
